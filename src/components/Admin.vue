@@ -4,8 +4,8 @@
     <template v-if="user">
         <button @click="logout">Logout</button>
       <div class="user">
-        <h6 v-text="user.displayName"></h6>
-        <img :src="user.photoURL" alt="">
+        <h2 v-text="user.displayName"></h2>
+        <img class="avatar" :src="user.photoURL" alt="">
       </div>
     </template>
     <template v-else>
@@ -66,6 +66,9 @@ h1, h2 {
   font-weight: normal;
 }
 
+.avatar {
+  width: 100px;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -76,7 +79,4 @@ li {
   margin: 0 10px;
 }
 
-a {
-  color: #35495E;
-}
 </style>

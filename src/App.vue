@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
-      <router-link to="/">Home</router-link>
-      <router-link to="/admin">Admin</router-link>
+      <span class="siteTitle">Vue.js PWA</span>
+      <router-link to="/" exact>Home</router-link>
+      <router-link to="/admin" exact>Admin</router-link>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
+      <img class="vueLogo" src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
@@ -18,15 +18,31 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
-
+.vueLogo {
+  width: 75px;
+}
+.siteTitle {
+  flex: 1 1 100%;
+    text-align: center;
+    margin: .25em 0 1em;
+    font-weight: 700;
+}
 a {
   color: white;
   font-weight: 700;
   margin: 0 1em;
+  padding: .5em 1em;
+  border-radius: 25px;
+
+  &.router-link-active {
+    background: white;
+    color: #35495e;
+    font-weight: 900;
+  }
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -42,10 +58,14 @@ main {
 
 header {
   margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
+  /*padding: 0 16px 0 24px;*/
   background-color: #35495E;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  padding-bottom: 1.25em;
 }
 
 header span {
