@@ -11,8 +11,6 @@
     <template v-else>
       <button @click="login">Login</button>
     </template>
-
-
   </div>
 </template>
 
@@ -43,6 +41,7 @@ export default {
     logout () {
       auth.signOut()
       .then(() => {
+        this.user = null
         alert('You are signed out!')
 
       }).catch(function(error) {
