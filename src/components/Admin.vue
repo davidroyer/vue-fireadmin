@@ -31,18 +31,18 @@ export default {
   },
 
   methods: {
-    // login () {
-    //   auth.signInWithPopup(provider)
-    //   .then((result) => {
-    //     this.user = result.user;
-    //   })
-    // },
     login () {
-      auth.signInWithRedirect(provider)
+      auth.signInWithPopup(provider)
       .then((result) => {
         this.user = result.user;
       })
     },
+    // login () {
+    //   auth.signInWithRedirect(provider)
+    //   .then((result) => {
+    //     this.user = result.user;
+    //   })
+    // },
     logout () {
       auth.signOut()
       .then(() => {

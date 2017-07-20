@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <span class="siteTitle">Vue.js PWA</span>
+      <span class="siteTitle">Vue-FireAdmin</span>
       <router-link to="/" exact>Home</router-link>
       <router-link to="/admin" exact>Admin</router-link>
     </header>
