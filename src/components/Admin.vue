@@ -25,24 +25,23 @@ export default {
       user: null
     }
   },
-
+  beforeCreate() {
+    // auth.onAuthStateChanged((user) => {
+    //   console.log('ON STATE CHANGE RAN');
+    //   console.log(user);
+    //   if (user) {
+    //     this.user = user
+    //   }
+    // })
+  },
   created() {
-    this.checkForActiveUser()
+    this.promiseCheck()
   },
 
   methods: {
     login () {
-      auth.signInWithPopup(provider)
-      .then((result) => {
-        this.user = result.user;
-      })
+      auth.signInWithRedirect(provider)
     },
-    // login () {
-    //   auth.signInWithRedirect(provider)
-    //   .then((result) => {
-    //     this.user = result.user;
-    //   })
-    // },
     logout () {
       auth.signOut()
       .then(() => {
@@ -54,12 +53,33 @@ export default {
       });
     },
 
-    checkForActiveUser() {
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          this.user = user
-        }
+    promiseCheck() {
+      this.checkForActiveUser()
+      .then((fulfilled) => {
+        console.log('Promise check fired!');
+        console.log(fulfilled);
+      }).catch((error) => {
+          // An error happened.
+      });
+    },
+    checkForActiveUser () {
+      return new Promise((resolve, reject) => {
+        auth.onAuthStateChanged((user) => {
+          console.log('INSIDE PROMISE: State Changed');
+          this.user = user ? user : null
+          resolve(user)
+
+        }, (error) => {
+          console.log(error)
+        })
       })
+      // auth.onAuthStateChanged((user) => {
+      //   console.log('ON STATE CHANGE RAN');
+      //   console.log(user);
+      //   if (user) {
+      //     this.user = user
+      //   }
+      // })
     }
   }
 }
